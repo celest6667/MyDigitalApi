@@ -1,41 +1,51 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rick & Morty - Explorateur</title>
-    <link rel="stylesheet" href="/src/style.css" />
-  </head>
-  <body>
-    <header class="en-tete">
-      <h1>🛸 Rick & Morty - Explorateur</h1>
-      <div class="controles">
-        <select id="selecteur-tri" class="selecteur-tri">
-          <option value="defaut">Tri par défaut</option>
-          <option value="nom-az">Nom (A → Z)</option>
-          <option value="nom-za">Nom (Z → A)</option>
-          <option value="episodes-desc">Épisodes (+ → -)</option>
-          <option value="episodes-asc">Épisodes (- → +)</option>
-        </select>
-        <button id="bouton-favoris" class="bouton-filtre">❤️ Favoris</button>
-        <button id="bouton-theme" class="bouton-theme">🌙</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>Rick & Morty — Explorateur</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <header class="en-tete">
+    <div class="en-tete-gauche">
+      <h1>Rick & Morty</h1>
+      <span class="sous-titre">Explorateur</span>
+    </div>
+    <div class="controles">
+      <div class="groupe-filtres">
+        <button id="btn-tous" class="btn-filtre actif">Tous</button>
+        <button id="btn-favoris" class="btn-filtre">Favoris</button>
       </div>
-    </header>
+      <select id="tri" class="selecteur-tri">
+        <option value="nom-az">Nom A → Z</option>
+        <option value="nom-za">Nom Z → A</option>
+        <option value="episodes-desc">Épisodes ↓</option>
+        <option value="episodes-asc">Épisodes ↑</option>
+      </select>
+      <button id="btn-theme" class="btn-theme" aria-label="Changer le thème">
+        <span class="icone-theme">☀</span>
+      </button>
+    </div>
+  </header>
 
-    <section id="bandeau-stats" class="bandeau-stats"></section>
+  <section id="bandeau-stats" class="bandeau-stats"></section>
 
-    <main>
-      <section id="grille-personnages" class="grille-personnages"></section>
-      <div id="zone-chargement" class="zone-chargement"></div>
-      <div id="zone-erreur" class="zone-erreur" hidden>
-        <p>Une erreur est survenue 😕</p>
-        <button id="bouton-reessayer">Réessayer</button>
-      </div>
-      <button id="bouton-voir-plus" class="bouton-voir-plus" hidden>Voir plus</button>
-    </main>
+  <main>
+    <section id="grille-personnages" class="grille-personnages"></section>
+    <div id="zone-chargement" class="zone-chargement"></div>
+    <div id="zone-erreur" class="zone-erreur" style="display:none;">
+      <p>Une erreur est survenue</p>
+      <button id="btn-reessayer" class="btn-reessayer">Réessayer</button>
+    </div>
+    <button id="btn-voir-plus" class="btn-voir-plus" style="display:none;">Voir plus</button>
+  </main>
 
-    <div id="modale-overlay" class="modale-overlay" hidden></div>
+  <div id="modale" class="modale" style="display:none;"></div>
 
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+  <script type="module" src="/src/main.ts"></script>
+</body>
 </html>
