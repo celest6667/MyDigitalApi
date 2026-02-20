@@ -1,12 +1,41 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mydigitalapi</title>
+    <title>Rick & Morty - Explorateur</title>
+    <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <div id="app"></div>
+    <header class="en-tete">
+      <h1>🛸 Rick & Morty - Explorateur</h1>
+      <div class="controles">
+        <select id="selecteur-tri" class="selecteur-tri">
+          <option value="defaut">Tri par défaut</option>
+          <option value="nom-az">Nom (A → Z)</option>
+          <option value="nom-za">Nom (Z → A)</option>
+          <option value="episodes-desc">Épisodes (+ → -)</option>
+          <option value="episodes-asc">Épisodes (- → +)</option>
+        </select>
+        <button id="bouton-favoris" class="bouton-filtre">❤️ Favoris</button>
+        <button id="bouton-theme" class="bouton-theme">🌙</button>
+      </div>
+    </header>
+
+    <section id="bandeau-stats" class="bandeau-stats"></section>
+
+    <main>
+      <section id="grille-personnages" class="grille-personnages"></section>
+      <div id="zone-chargement" class="zone-chargement"></div>
+      <div id="zone-erreur" class="zone-erreur" hidden>
+        <p>Une erreur est survenue 😕</p>
+        <button id="bouton-reessayer">Réessayer</button>
+      </div>
+      <button id="bouton-voir-plus" class="bouton-voir-plus" hidden>Voir plus</button>
+    </main>
+
+    <div id="modale-overlay" class="modale-overlay" hidden></div>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
