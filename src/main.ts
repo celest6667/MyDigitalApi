@@ -1,4 +1,5 @@
 import "./style.css";
+import { basculerSelection, obtenirSelection, estSelectionne, afficherComparaison, surChangementSelection } from "./components/compare";
 import { initialiserTheme, basculerTheme } from "./utils/theme";
 import { ouvrirModale } from "./components/modal";
 import type { Personnage } from "./types/character";
@@ -25,6 +26,7 @@ const btnTous = document.getElementById("btn-tous") as HTMLButtonElement;
 const btnFavoris = document.getElementById("btn-favoris") as HTMLButtonElement;
 const bandeauStats = document.getElementById("bandeau-stats")!;
 const btnTheme = document.getElementById("btn-theme") as HTMLButtonElement;
+const btnComparer = document.getElementById("btn-comparer") as HTMLButtonElement;
 
 // --- Affichage ---
 function afficherChargement(): void {
@@ -74,6 +76,12 @@ function mettreAJourStats(): void {
   `;
 }
 
+function mettreAJourBoutonComparer(): void {
+  const selection = obtenirSelection();
+  btnComparer.textContent = `Comparer (${selection.length}/2)`;
+  btnComparer.disabled = selection.length !== 2;
+}
+
 function afficherPersonnages(): void {
   let liste = vueFavoris
     ? personnages.filter((p) => obtenirFavoris().includes(p.id))
@@ -87,6 +95,7 @@ function afficherPersonnages(): void {
   });
 
   mettreAJourStats();
+  mettreAJourBoutonComparer();
 
   btnVoirPlus.style.display =
     !vueFavoris && pageActuelle < pagesTotales ? "block" : "none";
@@ -138,9 +147,20 @@ btnFavoris.addEventListener("click", () => {
   afficherPersonnages();
 });
 
+btnComparer.addEventListener("click", afficherComparaison);
+
+surChangementSelection(() => {
+  mettreAJourBoutonComparer();
+  document.querySelectorAll(".carte-personnage").forEach((carte) => {
+    const id = Number((carte as HTMLElement).dataset.id);
+    carte.classList.toggle("carte-selectionnee", estSelectionne(id));
+  });
+});
+
 grille.addEventListener("click", (e) => {
   const cible = e.target as HTMLElement;
 
+  // Clic sur bouton favori
   if (cible.classList.contains("btn-favori")) {
     const id = Number(cible.dataset.id);
     const estMaintenant = basculerFavori(id);
@@ -150,13 +170,20 @@ grille.addEventListener("click", (e) => {
   }
 
   const carte = cible.closest(".carte-personnage") as HTMLElement;
-  if (carte) {
-    const id = Number(carte.dataset.id);
-    const personnage = personnages.find((p) => p.id === id);
-    if (personnage) {
-      ouvrirModale(personnage);
-    }
+  if (!carte) return;
+
+  const id = Number(carte.dataset.id);
+  const personnage = personnages.find((p) => p.id === id);
+  if (!personnage) return;
+
+  // Shift+clic → sélection pour comparaison
+  if (e.shiftKey) {
+    basculerSelection(personnage);
+    return;
   }
+
+  // Clic simple → modale
+  ouvrirModale(personnage);
 });
 
 grille.addEventListener("keydown", (e) => {
@@ -167,6 +194,7 @@ grille.addEventListener("keydown", (e) => {
     }
   }
 });
-initialiserTheme();
+
 // --- Lancement ---
+initialiserTheme();
 chargerPage();

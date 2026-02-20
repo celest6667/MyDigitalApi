@@ -26,6 +26,7 @@
         <option value="episodes-desc">Épisodes ↓</option>
         <option value="episodes-asc">Épisodes ↑</option>
       </select>
+      <button id="btn-comparer" class="btn-comparer" disabled>Comparer (0/2)</button>
       <button id="btn-theme" class="btn-theme" aria-label="Changer le thème">
         <span class="icone-theme">☀</span>
       </button>
@@ -43,7 +44,13 @@
     </div>
     <button id="btn-voir-plus" class="btn-voir-plus" style="display:none;">Voir plus</button>
   </main>
-
+  <div id="comparaison" class="comparaison" style="display:none;">
+    <div class="comparaison-contenu">
+      <button class="comparaison-fermer" aria-label="Fermer">✕</button>
+      <h2 class="comparaison-titre">Comparaison</h2>
+      <div id="comparaison-corps" class="comparaison-corps"></div>
+    </div>
+  </div>
   <div id="modale" class="modale" style="display:none;"></div>
 
   <script type="module" src="/src/main.ts"></script>
