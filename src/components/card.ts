@@ -21,7 +21,7 @@ export function creerCarte(personnage: Personnage): HTMLElement {
       </span>
       <p class="carte-info">${personnage.species} · ${personnage.location.name}</p>
       <p class="carte-info">${personnage.episode.length} épisode(s)</p>
-<button class="btn-favori ${favori ? "btn-favori-actif" : ""}" data-id="${personnage.id}" aria-label="Ajouter aux favoris">★</button>
+      <button class="btn-favori ${favori ? "btn-favori-actif" : ""}" data-id="${personnage.id}" aria-label="Ajouter aux favoris">★</button>
     </div>
   `;
 

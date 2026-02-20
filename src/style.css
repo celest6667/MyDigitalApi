@@ -1,4 +1,3 @@
-/* --- Variables --- */
 :root {
   --fond: #fafafa;
   --surface: #ffffff;
@@ -40,7 +39,6 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* --- En-tête --- */
 .en-tete {
   background: var(--surface);
   border-bottom: 1px solid var(--bordure);
@@ -78,7 +76,6 @@ body {
   gap: 0.5rem;
 }
 
-/* --- Filtres --- */
 .groupe-filtres {
   display: flex;
   background: var(--fond);
@@ -106,7 +103,6 @@ body {
   box-shadow: var(--ombre);
 }
 
-/* --- Tri --- */
 .selecteur-tri {
   padding: 0.3rem 0.6rem;
   border: 1px solid var(--bordure);
@@ -121,7 +117,6 @@ body {
 
 .selecteur-tri:focus { border-color: var(--accent); }
 
-/* --- Thème --- */
 .btn-theme {
   width: 32px;
   height: 32px;
@@ -138,7 +133,6 @@ body {
 
 .btn-theme:hover { border-color: var(--accent); }
 
-/* --- Stats --- */
 .bandeau-stats {
   display: flex;
   justify-content: center;
@@ -152,7 +146,6 @@ body {
 
 .bandeau-stats strong { color: var(--accent); font-weight: 600; }
 
-/* --- Grille --- */
 .grille-personnages {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -162,7 +155,6 @@ body {
   margin: 0 auto;
 }
 
-/* --- Carte --- */
 .carte-personnage {
   background: var(--carte);
   border: 1px solid var(--bordure);
@@ -239,7 +231,6 @@ body {
   line-height: 1.4;
 }
 
-/* --- Favori --- */
 .btn-favori {
   position: absolute;
   top: 0.4rem;
@@ -272,7 +263,6 @@ body {
   color: #f3f4f6;
 }
 
-/* --- Skeletons --- */
 .skeleton { pointer-events: none; }
 
 .skeleton .skeleton-image {
@@ -299,7 +289,6 @@ body {
   50% { opacity: 0.4; }
 }
 
-/* --- Voir plus --- */
 .btn-voir-plus {
   display: block;
   margin: 1.5rem auto;
@@ -317,7 +306,6 @@ body {
 
 .btn-voir-plus:hover { background: var(--accent-hover); }
 
-/* --- Erreur --- */
 .zone-erreur {
   display: flex;
   flex-direction: column;
@@ -339,7 +327,6 @@ body {
   cursor: pointer;
 }
 
-/* --- Chargement --- */
 .zone-chargement {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -349,7 +336,6 @@ body {
   margin: 0 auto;
 }
 
-/* --- Modale --- */
 .modale {
   position: fixed;
   inset: 0;
@@ -421,7 +407,6 @@ body {
   justify-content: center;
 }
 
-/* --- Comparaison --- */
 .btn-comparer {
   padding: 0.3rem 0.7rem;
   border: 1px solid var(--bordure);
@@ -563,7 +548,6 @@ body {
   color: var(--accent);
   font-weight: 500;
 }
-/* --- Responsive --- */
 @media (max-width: 640px) {
   .en-tete {
     padding: 0.5rem 0.8rem;

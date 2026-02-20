@@ -8,14 +8,12 @@ import { creerCarte } from "./components/card";
 import { creerSkeleton } from "./components/skeleton";
 import { basculerFavori, obtenirFavoris } from "./utils/favorites";
 
-// --- État global ---
 let personnages: Personnage[] = [];
 let pageActuelle: number = 1;
 let pagesTotales: number = 1;
 let triActuel: string = "nom-az";
 let vueFavoris: boolean = false;
 
-// --- Éléments du DOM ---
 const grille = document.getElementById("grille-personnages")!;
 const zoneChargement = document.getElementById("zone-chargement")!;
 const zoneErreur = document.getElementById("zone-erreur")!;
@@ -28,7 +26,6 @@ const bandeauStats = document.getElementById("bandeau-stats")!;
 const btnTheme = document.getElementById("btn-theme") as HTMLButtonElement;
 const btnComparer = document.getElementById("btn-comparer") as HTMLButtonElement;
 
-// --- Affichage ---
 function afficherChargement(): void {
   zoneChargement.innerHTML = creerSkeleton(8);
   zoneErreur.style.display = "none";
@@ -101,7 +98,6 @@ function afficherPersonnages(): void {
     !vueFavoris && pageActuelle < pagesTotales ? "block" : "none";
 }
 
-// --- Chargement des données ---
 async function chargerPage(): Promise<void> {
   afficherChargement();
   try {
@@ -116,7 +112,6 @@ async function chargerPage(): Promise<void> {
   }
 }
 
-// --- Événements ---
 btnTheme.addEventListener("click", basculerTheme);
 
 btnVoirPlus.addEventListener("click", () => {
@@ -160,7 +155,6 @@ surChangementSelection(() => {
 grille.addEventListener("click", (e) => {
   const cible = e.target as HTMLElement;
 
-  // Clic sur bouton favori
   if (cible.classList.contains("btn-favori")) {
     const id = Number(cible.dataset.id);
     const estMaintenant = basculerFavori(id);
@@ -176,13 +170,11 @@ grille.addEventListener("click", (e) => {
   const personnage = personnages.find((p) => p.id === id);
   if (!personnage) return;
 
-  // Shift+clic → sélection pour comparaison
   if (e.shiftKey) {
     basculerSelection(personnage);
     return;
   }
 
-  // Clic simple → modale
   ouvrirModale(personnage);
 });
 
@@ -195,6 +187,5 @@ grille.addEventListener("keydown", (e) => {
   }
 });
 
-// --- Lancement ---
 initialiserTheme();
 chargerPage();

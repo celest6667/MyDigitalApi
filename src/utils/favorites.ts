@@ -20,5 +20,5 @@ export function basculerFavori(id: number): boolean {
   }
 
   localStorage.setItem(CLE_FAVORIS, JSON.stringify(favoris));
-  return index === -1; // retourne true si ajouté, false si retiré
+  return index === -1; 
 }
