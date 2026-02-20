@@ -1,4 +1,5 @@
 import "./style.css";
+import { initialiserTheme, basculerTheme } from "./utils/theme";
 import { ouvrirModale } from "./components/modal";
 import type { Personnage } from "./types/character";
 import { chargerPersonnages } from "./services/api";
@@ -23,6 +24,7 @@ const selectTri = document.getElementById("tri") as HTMLSelectElement;
 const btnTous = document.getElementById("btn-tous") as HTMLButtonElement;
 const btnFavoris = document.getElementById("btn-favoris") as HTMLButtonElement;
 const bandeauStats = document.getElementById("bandeau-stats")!;
+const btnTheme = document.getElementById("btn-theme") as HTMLButtonElement;
 
 // --- Affichage ---
 function afficherChargement(): void {
@@ -106,6 +108,7 @@ async function chargerPage(): Promise<void> {
 }
 
 // --- Événements ---
+btnTheme.addEventListener("click", basculerTheme);
 
 btnVoirPlus.addEventListener("click", () => {
   pageActuelle++;
@@ -164,6 +167,6 @@ grille.addEventListener("keydown", (e) => {
     }
   }
 });
-
+initialiserTheme();
 // --- Lancement ---
 chargerPage();
