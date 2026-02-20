@@ -1,7 +1,8 @@
 export function creerSkeleton(nombre: number = 8): string {
   return Array(nombre)
     .fill("")
-    .map(() => `
+    .map(
+      () => `
       <article class="carte-personnage skeleton">
         <div class="skeleton-image"></div>
         <div class="carte-contenu">
@@ -10,6 +11,7 @@ export function creerSkeleton(nombre: number = 8): string {
           <div class="skeleton-ligne skeleton-texte court"></div>
         </div>
       </article>
-    `)
+    `,
+    )
     .join("");
 }

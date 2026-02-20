@@ -1,5 +1,11 @@
 import "./style.css";
-import { basculerSelection, obtenirSelection, estSelectionne, afficherComparaison, surChangementSelection } from "./components/compare";
+import {
+  basculerSelection,
+  obtenirSelection,
+  estSelectionne,
+  afficherComparaison,
+  surChangementSelection,
+} from "./components/compare";
 import { initialiserTheme, basculerTheme } from "./utils/theme";
 import { ouvrirModale } from "./components/modal";
 import type { Personnage } from "./types/character";
@@ -62,9 +68,10 @@ function mettreAJourStats(): void {
   const favoris = obtenirFavoris();
   const totalAffiche = personnages.length;
   const nbFavoris = favoris.length;
-  const moyenneEpisodes = personnages.length > 0
-    ? (personnages.reduce((acc, p) => acc + p.episode.length, 0) / personnages.length).toFixed(1)
-    : "0";
+  const moyenneEpisodes =
+    personnages.length > 0
+      ? (personnages.reduce((acc, p) => acc + p.episode.length, 0) / personnages.length).toFixed(1)
+      : "0";
 
   bandeauStats.innerHTML = `
     <span>Affichés : <strong>${totalAffiche}</strong></span>
@@ -80,9 +87,7 @@ function mettreAJourBoutonComparer(): void {
 }
 
 function afficherPersonnages(): void {
-  let liste = vueFavoris
-    ? personnages.filter((p) => obtenirFavoris().includes(p.id))
-    : personnages;
+  let liste = vueFavoris ? personnages.filter((p) => obtenirFavoris().includes(p.id)) : personnages;
 
   liste = trierPersonnages(liste);
 
@@ -94,8 +99,7 @@ function afficherPersonnages(): void {
   mettreAJourStats();
   mettreAJourBoutonComparer();
 
-  btnVoirPlus.style.display =
-    !vueFavoris && pageActuelle < pagesTotales ? "block" : "none";
+  btnVoirPlus.style.display = !vueFavoris && pageActuelle < pagesTotales ? "block" : "none";
 }
 
 async function chargerPage(): Promise<void> {
